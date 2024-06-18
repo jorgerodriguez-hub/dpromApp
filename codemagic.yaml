@@ -28,9 +28,3 @@ workflows:
 
     environment:
       flutter: stable
-
-    cache:
-      key: flutter-v1
-      paths:
-        - node_modules/
-        - ios/Pods/
