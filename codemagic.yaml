@@ -1,13 +1,7 @@
 workflows:
   main:
     name: iOS Build and Release
-    trigger:
-      event:
-        - push
-        - pull_request
-
-    environment:
-      react_native_version: 0.64.2
+    max_build_duration: 60
 
     scripts:
       - name: Install dependencies
@@ -32,17 +26,13 @@ workflows:
         recipients:
           - razercs93@gmail.com
 
-    notifications:
-      email:
-        recipients:
-          - razercs93@gmail.com
-
-    xcode:
-      version: 13.0
+    environment:
+      flutter: stable
 
     cache:
-      cocoapods: true
+      directories:
+        - node_modules/
+        - ios/Pods/
 
-    dependencies:
-      pre:
-        - gem install cocoapods -v 1.11.2
+    workflows:
+      version: 2
