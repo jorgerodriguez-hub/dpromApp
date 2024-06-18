@@ -15,8 +15,8 @@ workflows:
           pod install
           cd ..
           npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios
-          xcodebuild -workspace YourProjectName.xcworkspace -scheme YourSchemeName -configuration Release -archivePath build/YourProjectName.xcarchive archive -quiet || exit
-          xcodebuild -exportArchive -archivePath "build/YourProjectName.xcarchive" -exportOptionsPlist exportOptions.plist -exportPath build
+          xcodebuild -workspace dpromApp.xcworkspace -scheme dpromApp -configuration Release -archivePath build/dpromApp.xcarchive archive -quiet || exit
+          xcodebuild -exportArchive -archivePath "build/dpromApp.xcarchive" -exportOptionsPlist exportOptions.plist -exportPath build
 
     artifacts:
       - build/*.ipa
@@ -24,7 +24,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - user@example.com
+          - razercs93@gmail.com
 
     environment:
       flutter: stable
