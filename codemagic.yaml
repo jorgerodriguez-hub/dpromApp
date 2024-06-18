@@ -24,14 +24,13 @@ workflows:
     publishing:
       email:
         recipients:
-          - razercs93@gmail.com
+          - user@example.com
 
     environment:
       flutter: stable
 
     cache:
-      directories:
+      key: flutter-v1
+      paths:
         - node_modules/
         - ios/Pods/
-
-    version: 2
