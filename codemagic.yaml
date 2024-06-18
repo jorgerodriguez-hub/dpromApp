@@ -1,0 +1,48 @@
+workflows:
+  main:
+    name: iOS Build and Release
+    trigger:
+      event:
+        - push
+        - pull_request
+
+    environment:
+      react_native_version: 0.64.2
+
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install -g yarn
+          yarn install
+
+      - name: Build iOS app
+        script: |
+          cd ios
+          pod install
+          cd ..
+          npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios
+          xcodebuild -workspace YourProjectName.xcworkspace -scheme YourSchemeName -configuration Release -archivePath build/YourProjectName.xcarchive archive -quiet || exit
+          xcodebuild -exportArchive -archivePath "build/YourProjectName.xcarchive" -exportOptionsPlist exportOptions.plist -exportPath build
+
+    artifacts:
+      - build/*.ipa
+
+    publishing:
+      email:
+        recipients:
+          - razercs93@gmail.com
+
+    notifications:
+      email:
+        recipients:
+          - razercs93@gmail.com
+
+    xcode:
+      version: 13.0
+
+    cache:
+      cocoapods: true
+
+    dependencies:
+      pre:
+        - gem install cocoapods -v 1.11.2
