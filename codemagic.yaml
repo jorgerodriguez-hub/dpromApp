@@ -15,7 +15,7 @@ workflows:
           pod install
           cd ..
           npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios
-          xcodebuild -workspace dpromApp.xcworkspace -scheme dpromApp -configuration Release -archivePath build/dpromApp.xcarchive archive -quiet || exit
+          xcodebuild -workspace ios/dpromApp.xcworkspace -scheme dpromApp -configuration Release -archivePath build/dpromApp.xcarchive archive -quiet || exit
           xcodebuild -exportArchive -archivePath "build/dpromApp.xcarchive" -exportOptionsPlist exportOptions.plist -exportPath build
 
     artifacts:
