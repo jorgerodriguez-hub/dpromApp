@@ -51,6 +51,7 @@ target 'dpromApp' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
+    config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
